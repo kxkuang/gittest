@@ -1,43 +1,50 @@
-#def test(info):
-    #if info.username=="root"and info.passwd=="1223":
-        #print("你有权限")
-    #else:
-        #print("你没有权限")
-        #return
-    #return"123"
-#def test2(info):
-    #if info.username=="root"and info.passwd=="1223":
-      # print("你有权限")
-    #else:
-       #print("你没有权限")
-     #  return
-   # return"456"
-#@permit
-#def test2(info):
-    #return"456"
 
-#permit
-#def test(info):
-    #return"123"
-------------------------------------------
-def permit():
-    def log(username,passwd):
-        if username=="root"and passwd=="1223":
-            print("你有权限")
-        else:
-            print("你没有权限")
-            return
-        return"123"
 
-@permit()
-def log(root,"1223"):
-     return "123"
+dataQueue.join()import threading,queue
+import time
+from urllib import request
+lock = threading.Lock()
+url="https://www.taobao.com"
+dataQueue = queue.Queue(maxsize=5)
 
-def test2(info):
-    return"456"
+def demand(num):
+    while True:
+        try:
+            data=dataQueue.get(block=False)
+        except queue.Empty:
+             break
+        with lock:
+              r=request.urlopen(url)
+              print(r.code)
+        time.sleep(0.1)
+        dataQueue.task_done()
 
-def test(info):
-    return"123"
+if __name__ == "__main__":
+    getThreads=[]
+    for i in range (100):
+        t=threading.Thread(target=demand,args=(i,))
+        getThreads.append(t)
+        t.start()
+
+dataQueue.join()
+
+
+
+from multiprocessing import Pool,Process,Lock
+from urllib import request
+
+def clt_msg(num):
+    url="https://www.taobao.com"
+    r=request.get(url)
+    print (r.code)
+
+if __name__ == "__main__":
+    pool=Pool(processes=5)
+for i in range(100):
+    pool.apply_async(clt_msg(i,))
+    pool.close()
+    pool.join()
+
 
 
 
