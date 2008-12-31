@@ -1,5 +1,4 @@
-
-
+多线程:
 dataQueue.join()import threading,queue
 import time
 from urllib import request
@@ -29,7 +28,7 @@ if __name__ == "__main__":
 dataQueue.join()
 
 
-
+多进程:
 from multiprocessing import Pool,Process,Lock
 from urllib import request
 
@@ -45,6 +44,13 @@ for i in range(100):
     pool.close()
     pool.join()
 
+#思考题:
+#post与get区别：
+#1.接的参数范围
+#2.数据处理方式
+#3.安全局限性
+
+#post  常有四种  具体多少不知道
 
 
 
