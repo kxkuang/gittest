@@ -1,5 +1,5 @@
 多线程:
-dataQueue.join()import threading,queue
+import threading,queue
 import time
 from urllib import request
 lock = threading.Lock()
