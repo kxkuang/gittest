@@ -30,10 +30,14 @@ def permit():
         return"123"
 
 @permit()
-def log(username,passwd):
+def log(root,"1223"):
      return "123"
 
-log("root",1223)
+def test2(info):
+    return"456"
+
+def test(info):
+    return"123"
 
 
 
